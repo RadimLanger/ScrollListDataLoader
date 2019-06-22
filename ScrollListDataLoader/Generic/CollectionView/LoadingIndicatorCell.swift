@@ -1,0 +1,33 @@
+//
+//  LoadingIndicatorCell.swift
+//  ScrollListDataLoader
+//
+//  Created by Radim Langer on 22/06/2019.
+//  Copyright © 2019 Evolution. All rights reserved.
+//
+
+import UIKit
+
+final class LoadingIndicatorCell: UICollectionViewCell {
+
+    static let preferredHeight: CGFloat = 24
+
+    let loadingIndicator = UIActivityIndicatorView(style: .gray)
+
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+
+        addSubview(loadingIndicator)
+        loadingIndicator.startAnimating()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        loadingIndicator.frame = contentView.frame
+    }
+}
