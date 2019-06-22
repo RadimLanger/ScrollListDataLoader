@@ -10,7 +10,7 @@ import UIKit
 
 final class LoadingIndicatorCell: UICollectionViewCell {
 
-    static let preferredHeight: CGFloat = 24
+    static let preferredHeight: CGFloat = 50
 
     let loadingIndicator = UIActivityIndicatorView(style: .gray)
 
@@ -27,7 +27,8 @@ final class LoadingIndicatorCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        loadingIndicator.frame = contentView.frame
+        loadingIndicator.sizeToFit()
+        loadingIndicator.frame.size.width = contentView.frame.width
+        loadingIndicator.center.y = contentView.frame.height / 2
     }
 }

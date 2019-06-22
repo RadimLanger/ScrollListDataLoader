@@ -14,6 +14,9 @@ final class NewsView: UIView {
 
     convenience init() {
         self.init(frame: .zero)
+        backgroundColor = .white
+        collectionView.backgroundColor = .white
+        addSubview(collectionView)
     }
 
     override func layoutSubviews() {

@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol NewsViewControllerDelegate: AnyObject {
+    func newsViewController(_ controller: NewsViewController, didScrollAtBottomWith lastLoadedPage: Int)
+}
+
 final class NewsViewController: UIViewController {
+
+    weak var delegate: NewsViewControllerDelegate?
 
     private let rootView = NewsView()
     private let dataSource = NewsCollectionDataSource()
+
+    private var collectionView: UICollectionView {
+        return rootView.collectionView
+    }
 
     override func loadView() {
         view = rootView
@@ -20,11 +30,14 @@ final class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        rootView.collectionView.dataSource = dataSource
-        rootView.collectionView.delegate = self
+        collectionView.dataSource = dataSource
+        collectionView.delegate = self
     }
 
-
+    func setArticles(_ articles: [Article], for pageNumber: Int) {
+        dataSource.articles[pageNumber] = articles
+        collectionView.reloadData()
+    }
 }
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {
@@ -48,7 +61,18 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
 
+        let lastLoadedPage = Array(dataSource.articles.keys).max() ?? 1
+        let currentArticlesCount = dataSource.allArticles.count
+        let willDisplayLastButOneCell = (currentArticlesCount - indexPath.item) <= 2
+
+        if willDisplayLastButOneCell {
+            delegate?.newsViewController(self, didScrollAtBottomWith: lastLoadedPage)
+        }
     }
 }

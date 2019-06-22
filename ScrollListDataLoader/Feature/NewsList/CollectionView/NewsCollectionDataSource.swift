@@ -9,26 +9,43 @@
 import UIKit
 
 enum NewsCollectionDataSourceItem {
-    case article
+    case article(Article)
     case loadingIndicator
 }
 
 final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSourceItem> {
 
-
-    override func cellDescriptor(for item: NewsCollectionDataSourceItem) -> CollectionCellDescriptor {
-        switch item {
-            case .article:          return article()
-            case .loadingIndicator: return loadingIndicatorDescriptor
-
+    var articles = [Int: [Article]]() {
+        didSet {
+            let articleItems = allArticles.map(NewsCollectionDataSourceItem.article)
+            sections = [Section(items: articleItems + [.loadingIndicator])]
         }
     }
 
-    private func article() -> CollectionCellDescriptor {
+    var allArticles: [Article] {
+        return articles.values.reduce([], +)
+    }
+
+    init() {
+        super.init(sections: [Section(items: [.loadingIndicator])])
+    }
+
+    override func cellDescriptor(for item: NewsCollectionDataSourceItem) -> CollectionCellDescriptor {
+        switch item {
+            case .article(let article): return articleDescriptor(article)
+            case .loadingIndicator:     return loadingIndicatorDescriptor
+        }
+    }
+
+    private func articleDescriptor(_ article: Article) -> CollectionCellDescriptor {
         return .init(cellClass: ArticleCell.self, configure: { cell in
             // todo: setup
         })
     }
 
-    private let loadingIndicatorDescriptor = CollectionCellDescriptor(cellClass: LoadingIndicatorCell.self)
+    private var loadingIndicatorDescriptor: CollectionCellDescriptor {
+        return .init(cellClass: LoadingIndicatorCell.self, configure: { cell in
+            cell.loadingIndicator.startAnimating()
+        })
+    }
 }
