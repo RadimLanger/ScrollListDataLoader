@@ -15,7 +15,7 @@ final class NewsView: UIView {
     convenience init() {
         self.init(frame: .zero)
         backgroundColor = .white
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "SeparatorColor")
         addSubview(collectionView)
     }
 

@@ -17,9 +17,19 @@ final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSou
 
     var articles = [Int: [Article]]() {
         didSet {
-            let articleItems = allArticles.map(NewsCollectionDataSourceItem.article)
+            let articleItems = sortedArticles.map(NewsCollectionDataSourceItem.article)
             sections = [Section(items: articleItems + [.loadingIndicator])]
         }
+    }
+
+    private var sortedArticles: [Article] {
+        var finalArticles = [Article]()
+
+        articles.keys.sorted().forEach({
+            finalArticles += self.articles[$0] ?? []
+        })
+
+        return finalArticles
     }
 
     var allArticles: [Article] {
@@ -39,7 +49,7 @@ final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSou
 
     private func articleDescriptor(_ article: Article) -> CollectionCellDescriptor {
         return .init(cellClass: ArticleCell.self, configure: { cell in
-            // todo: setup
+            cell.setup(with: article)
         })
     }
 

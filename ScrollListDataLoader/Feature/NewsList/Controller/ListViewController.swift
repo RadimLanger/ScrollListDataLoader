@@ -30,6 +30,7 @@ final class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "News"
         collectionView.dataSource = dataSource
         collectionView.delegate = self
     }
@@ -54,7 +55,7 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat
 
         switch item {
-            case .article:          height = 50
+            case .article:          height = ArticleCell.preferredHeight
             case .loadingIndicator: height = LoadingIndicatorCell.preferredHeight
         }
 

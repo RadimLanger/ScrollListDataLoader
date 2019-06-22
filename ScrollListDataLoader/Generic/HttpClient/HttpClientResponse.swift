@@ -16,7 +16,6 @@ extension HttpClientResponse {
 
         let decodedData: A?
         let decoder = JSONDecoder()
-//        decoder.dateDecodingStrategy = .formatted(DataFetcher.dateFormatter) // todo: ?
 
         do {
             decodedData = try decoder.decode(A.self, from: data)

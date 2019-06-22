@@ -30,6 +30,7 @@
 		D96F149E22BE2A8A00421BB6 /* NewsRequestURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F149D22BE2A8A00421BB6 /* NewsRequestURI.swift */; };
 		D96F14A122BE2B1300421BB6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A022BE2B1300421BB6 /* Config.swift */; };
 		D96F14A322BE5B8F00421BB6 /* URLRequest+HeaderValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */; };
+		D96F14A522BE90A400421BB6 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A422BE90A400421BB6 /* String+md5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		D96F149D22BE2A8A00421BB6 /* NewsRequestURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequestURI.swift; sourceTree = "<group>"; };
 		D96F14A022BE2B1300421BB6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+HeaderValues.swift"; sourceTree = "<group>"; };
+		D96F14A422BE90A400421BB6 /* String+md5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		D96F145A22BD752700421BB6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D96F14A422BE90A400421BB6 /* String+md5.swift */,
 				D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */,
 			);
 			path = Extensions;
@@ -313,6 +316,7 @@
 				D96F149322BE285300421BB6 /* HttpClientResponse.swift in Sources */,
 				D96F149B22BE295600421BB6 /* Article.swift in Sources */,
 				D96F145C22BD75BD00421BB6 /* Coordinator.swift in Sources */,
+				D96F14A522BE90A400421BB6 /* String+md5.swift in Sources */,
 				D96F145822BD74B900421BB6 /* AppCoordinator.swift in Sources */,
 				D96F148622BE225300421BB6 /* LoadingIndicatorCell.swift in Sources */,
 				D96F14A322BE5B8F00421BB6 /* URLRequest+HeaderValues.swift in Sources */,
