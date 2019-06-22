@@ -38,12 +38,14 @@ class HttpClientImpl: HttpClient {
         self.plainExecute(request: request) { result in
             switch result {
             case .success(let response):
+
+                if let decoded: StructResult = response.parse() {
+                    completion(.success(decoded))
+                    return
+                }
+
                 if 200..<299 ~= response.statusCode {
-                    if let decoded: StructResult = response.parse() {
-                        completion(.success(decoded))
-                    } else {
-                        completion(.failure(.invalidResponse))
-                    }
+                    completion(.failure(.invalidResponse))
                 } else {
                     completion(.failure(.invalidStatusCode))
                 }

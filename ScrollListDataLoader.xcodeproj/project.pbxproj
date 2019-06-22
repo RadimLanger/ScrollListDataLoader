@@ -31,6 +31,7 @@
 		D96F14A122BE2B1300421BB6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A022BE2B1300421BB6 /* Config.swift */; };
 		D96F14A322BE5B8F00421BB6 /* URLRequest+HeaderValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */; };
 		D96F14A522BE90A400421BB6 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14A422BE90A400421BB6 /* String+md5.swift */; };
+		D96F14C622BEA2CD00421BB6 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96F14C522BEA2CD00421BB6 /* UIViewController+Banner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		D96F14A022BE2B1300421BB6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+HeaderValues.swift"; sourceTree = "<group>"; };
 		D96F14A422BE90A400421BB6 /* String+md5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
+		D96F14C522BEA2CD00421BB6 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		D96F145522BD745600421BB6 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				D96F14C422BEA2B500421BB6 /* Extensions */,
 				D96F147E22BE1FB800421BB6 /* NewsList */,
 			);
 			path = Feature;
@@ -150,7 +153,6 @@
 		D96F145A22BD752700421BB6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D96F14A422BE90A400421BB6 /* String+md5.swift */,
 				D96F14A222BE5B8F00421BB6 /* URLRequest+HeaderValues.swift */,
 			);
 			path = Extensions;
@@ -241,6 +243,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		D96F14C422BEA2B500421BB6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D96F14A422BE90A400421BB6 /* String+md5.swift */,
+				D96F14C522BEA2CD00421BB6 /* UIViewController+Banner.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,6 +338,7 @@
 				D96F145E22BD76B700421BB6 /* NewsView.swift in Sources */,
 				D96F149522BE285300421BB6 /* HttpClient.swift in Sources */,
 				D96F148122BE1FFC00421BB6 /* CollectionDataSource.swift in Sources */,
+				D96F14C622BEA2CD00421BB6 /* UIViewController+Banner.swift in Sources */,
 				D96F149822BE28EB00421BB6 /* NewsRemoteResource.swift in Sources */,
 				D96F148322BE20E200421BB6 /* NewsCollectionDataSource.swift in Sources */,
 				D93E079D22BB7FDB00B87EC4 /* ListViewController.swift in Sources */,

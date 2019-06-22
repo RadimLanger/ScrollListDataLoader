@@ -8,10 +8,11 @@
 
 struct ArticleResponse: Decodable {
     let status: String
-    let articles: [Article]
+    let message: String?
+    let articles: [Article]?
 }
 
-struct Article: Decodable {
+struct Article: Decodable, Equatable {
     let title: String
     let urlToImage: String?
 }

@@ -22,7 +22,7 @@ enum NewsRequestURI: String {
         for query: String = "apple",
         date: Date = Date(),
         sortBy: SortBy = .popularity,
-        pageSize: Int = 15, // todo: 
+        pageSize: Int = 10, 
         language: String = "en",
         pageNumber: Int
     ) -> String {

@@ -43,20 +43,26 @@ final class AppCoordinator: Coordinator {
             switch result {
                 case .success(let articleResponse):
 
-                    if articleResponse.status == "ok" {
-                        print("got response for page number: \(pageNumber)")
-                        self?.newsController.setArticles(articleResponse.articles, for: pageNumber)
+                    if articleResponse.status == "ok", let articles = articleResponse.articles {
+                        self?.newsController.setArticles(articles, for: pageNumber)
+                    } else if let message = articleResponse.message {
+                        self?.showError(with: message)
+                        self?.newsController.removeBottomLoadingIndicator()
                     } else {
-                        // todo:
+                        self?.showError(with: "Unknown error")
                     }
 
                 case .failure(let error):
-                    print(error)
+                    self?.showError(with: String(describing: error))
             }
         }
     }
-}
 
+    private func showError(with reason: String) {
+        let height = newsController.view.safeAreaInsets.top + 8
+        navigationController.showNotification(with: reason, topInset: height )
+    }
+}
 
 extension AppCoordinator: NewsViewControllerDelegate {
 

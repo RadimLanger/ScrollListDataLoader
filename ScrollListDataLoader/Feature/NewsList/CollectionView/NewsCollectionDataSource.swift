@@ -8,18 +8,27 @@
 
 import UIKit
 
-enum NewsCollectionDataSourceItem {
+enum NewsCollectionDataSourceItem: Equatable {
     case article(Article)
     case loadingIndicator
 }
 
 final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSourceItem> {
 
+    var isBottomLoadingIndicatorVisible = true {
+        didSet {
+            reloadData()
+        }
+    }
+
     var articles = [Int: [Article]]() {
         didSet {
-            let articleItems = sortedArticles.map(NewsCollectionDataSourceItem.article)
-            sections = [Section(items: articleItems + [.loadingIndicator])]
+            reloadData()
         }
+    }
+
+    var allArticles: [Article] {
+        return articles.values.reduce([], +)
     }
 
     private var sortedArticles: [Article] {
@@ -32,10 +41,6 @@ final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSou
         return finalArticles
     }
 
-    var allArticles: [Article] {
-        return articles.values.reduce([], +)
-    }
-
     init() {
         super.init(sections: [Section(items: [.loadingIndicator])])
     }
@@ -45,6 +50,15 @@ final class NewsCollectionDataSource: CollectionDataSource<NewsCollectionDataSou
             case .article(let article): return articleDescriptor(article)
             case .loadingIndicator:     return loadingIndicatorDescriptor
         }
+    }
+
+    private func reloadData() {
+
+        var items = sortedArticles.map(NewsCollectionDataSourceItem.article)
+        if isBottomLoadingIndicatorVisible {
+            items += [.loadingIndicator]
+        }
+        sections = [Section(items: items)]
     }
 
     private func articleDescriptor(_ article: Article) -> CollectionCellDescriptor {

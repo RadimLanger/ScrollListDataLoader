@@ -36,7 +36,13 @@ final class NewsViewController: UIViewController {
     }
 
     func setArticles(_ articles: [Article], for pageNumber: Int) {
+
         dataSource.articles[pageNumber] = articles
+        collectionView.reloadData()
+    }
+
+    func removeBottomLoadingIndicator() {
+        dataSource.isBottomLoadingIndicatorVisible = false
         collectionView.reloadData()
     }
 }
@@ -67,13 +73,10 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
         willDisplay cell: UICollectionViewCell,
         forItemAt indexPath: IndexPath
     ) {
+        guard let item = dataSource.item(at: indexPath), item == .loadingIndicator else { return }
 
         let lastLoadedPage = Array(dataSource.articles.keys).max() ?? 1
-        let currentArticlesCount = dataSource.allArticles.count
-        let willDisplayLastButOneCell = (currentArticlesCount - indexPath.item) <= 2
 
-        if willDisplayLastButOneCell {
-            delegate?.newsViewController(self, didScrollAtBottomWith: lastLoadedPage)
-        }
+        delegate?.newsViewController(self, didScrollAtBottomWith: lastLoadedPage)
     }
 }
